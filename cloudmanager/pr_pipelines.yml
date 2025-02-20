@@ -1,0 +1,9 @@
+github:
+  shouldDeletePreviousComment: true
+pipelines:
+  - type: CI_CD
+    template:
+      programId: 12169
+      pipelineId: 456
+    namePrefix: Full Stack Code Quality Pipeline for PR
+    importantMetricsFailureBehavior: CONTINUE
