@@ -16,7 +16,7 @@ Include conf.d/variables/custom.vars
 	DocumentRoot "${DOCROOT}"
 
 
-    <LocationMatch "^(?!/systemready|/bin/servlet|/content).*">
+    <LocationMatch "^/content.*">
         # <If "'${ENV_TYPE}' != 'prod'">
             # Enable basic authentication
             AuthType Basic
