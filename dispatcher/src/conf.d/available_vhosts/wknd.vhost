@@ -14,6 +14,28 @@ Include conf.d/variables/custom.vars
 	ServerAlias	 "*"
 	# Use a document root that matches the one in conf.dispatcher.d/default.farm
 	DocumentRoot "${DOCROOT}"
+
+
+    <LocationMatch "^(?!/systemready|/bin/servlet|/content).*">
+        # <If "'${ENV_TYPE}' != 'prod'">
+            # Enable basic authentication
+            AuthType Basic
+            AuthName "Access Restricted Area"
+
+            # Take user information from file
+            AuthBasicProvider file
+            AuthUserFile "conf.d/htaccess/ace.htpasswd"
+
+            # Restrict access to authenticated users
+            Require valid-user
+
+            # Remove "Authorization" header
+            RequestHeader unset Authorization
+        # </If>
+    </LocationMatch>
+
+
+
 	# URI dereferencing algorithm is applied at Sling's level, do not decode parameters here
 	AllowEncodedSlashes NoDecode
 
